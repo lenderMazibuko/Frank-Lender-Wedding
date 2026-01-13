@@ -249,12 +249,39 @@
     </div>
 
     <script>
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            alert(`Thank you, ${name}! Your RSVP has been received.`);
-            this.reset();
-        });
+        <!-- 🟨 Insert this RSVP script here 🟨 -->
+<script>
+document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent default form submission
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const attendance = document.getElementById('attendance').value;
+    const plusOne = document.getElementById('plusOne').value;
+    const song = document.getElementById('song').value;
+    const message = document.getElementById('message').value;
+
+    // Construct email body
+    const body = `
+Name: ${name}
+Email: ${email}
+Attending: ${attendance}
+Plus One: ${plusOne}
+Song Suggestion: ${song}
+Message: ${message}
+`;
+
+    // Encode for URL
+    const mailtoLink = `mailto:Lendern6@gmail.com?subject=Wedding RSVP from ${encodeURIComponent(name)}&body=${encodeURIComponent(body)}`;
+
+    // Open user's email client
+    window.location.href = mailtoLink;
+
+    // Optionally reset form
+    this.reset();
+});
+</script>
+
             
         // Countdown Timer
         const weddingDate = new Date("September 26, 2026 15:00:00").getTime();
@@ -294,3 +321,4 @@
 
 </body>
 </html>
+
