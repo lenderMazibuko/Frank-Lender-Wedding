@@ -252,7 +252,7 @@
         <!-- 🟨 Insert this RSVP script here 🟨 -->
 <script>
 document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault(); // Prevent form submission
 
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
@@ -261,9 +261,9 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e) {
     const song = document.getElementById('song').value;
     const message = document.getElementById('message').value;
 
-    // Construct email body
-    const body = `
-Name: ${name}
+    // Construct WhatsApp message
+    const waMessage = `
+Wedding RSVP from ${name}
 Email: ${email}
 Attending: ${attendance}
 Plus One: ${plusOne}
@@ -271,15 +271,20 @@ Song Suggestion: ${song}
 Message: ${message}
 `;
 
-    // Encode for URL
-    const mailtoLink = `mailto:Lendern6@gmail.com?subject=Wedding RSVP from ${encodeURIComponent(name)}&body=${encodeURIComponent(body)}`;
+    // Encode message for URL
+    const encodedMessage = encodeURIComponent(waMessage);
 
-    // Open user's email client
-    window.location.href = mailtoLink;
+    // Your WhatsApp number (with country code, no + or spaces)
+    const waNumber = '2786781052'; // South Africa: 27 country code
 
-    // Optionally reset form
+    // Open WhatsApp
+    const waLink = `https://wa.me/${waNumber}?text=${encodedMessage}`;
+    window.open(waLink, '_blank');
+
+    // Optionally reset the form
     this.reset();
 });
+
 </script>
 
             
@@ -321,4 +326,5 @@ Message: ${message}
 
 </body>
 </html>
+
 
